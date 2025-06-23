@@ -1,0 +1,23 @@
+<div class="bienvenido-bg">
+  <div class="overlay"></div>
+  <div class="login-box" *ngIf="sesion">
+    <img src="assets/logo.png" class="logo" alt="Logo" />
+    <h2>Inicio de sesión exitoso</h2>
+    <p><strong>Bienvenido:</strong> {{ sesion.nombre }}</p>
+    <p><strong>Rol:</strong> {{ sesion.rol }}</p>
+    <p><strong>Correo:</strong> {{ sesion.correo }}</p>
+    <p><strong>Hora de inicio:</strong> {{ sesion.horaInicio }}</p>
+
+    <div class="botones">
+      <button (click)="cerrarSesion()">Cerrar sesión</button>
+
+      <button *ngIf="sesion.rol === 'Administrador'" (click)="irAlDashboard()">
+        Ir al dashboard
+      </button>
+
+      <button *ngIf="sesion.rol !== 'Administrador'" (click)="verInformacion()">
+        Ver Vehiculos
+      </button>
+    </div>
+  </div>
+</div>

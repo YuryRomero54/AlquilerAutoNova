@@ -1,0 +1,32 @@
+<div class="fondo">
+  <div class="contenedor-formulario">
+    <img src="/assets/logo.png" alt="Logo" class="logo" />
+    <h2>Registrar Gestión</h2>
+
+    <label>ID del Administrador:</label>
+    <input type="number" [(ngModel)]="gestion.idAdmin" />
+
+    <label>ID de Alquiler:</label>
+    <input type="number" [(ngModel)]="gestion.idAlquiler" />
+
+    <label>Observaciones:</label>
+    <textarea [(ngModel)]="gestion.observaciones"></textarea>
+
+    <button (click)="registrar()">Registrar Gestión</button>
+
+    <!-- Mensaje de éxito -->
+    <div *ngIf="registroExitoso" style="margin-top: 15px; color: green; font-weight: bold;">
+      ✅ ¡Gestión registrada exitosamente!
+    </div>
+
+    <!-- Mensaje de error -->
+    <div *ngIf="errorMensaje" style="margin-top: 15px; color: red; font-weight: bold;">
+      {{ errorMensaje }}
+    </div>
+
+    <!-- Botón para ver la tabla en otra pestaña -->
+    <a *ngIf="registroExitoso" (click)="abrirTablaGestiones($event)" class="btn-ver-tabla">
+      Ver tabla de gestiones
+    </a>
+  </div>
+</div>

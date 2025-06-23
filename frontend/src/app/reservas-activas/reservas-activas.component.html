@@ -1,0 +1,25 @@
+<div class="contenedor">
+  <img src="assets/logo.png" alt="Logo" class="logo" />
+
+  <h2>📋 Cancelar Alquiler</h2>
+
+  <button class="btn-toggle" (click)="mostrarFormulario = !mostrarFormulario">
+    Cancelar Reserva
+  </button>
+
+  <form *ngIf="mostrarFormulario" class="formulario" (ngSubmit)="cancelarReserva()">
+    <div class="campo">
+      <label for="idUsuario">ID Usuario:</label>
+      <input type="number" [(ngModel)]="idUsuario" name="idUsuario" required />
+    </div>
+
+    <div class="campo">
+      <label for="idAlquiler">ID Alquiler:</label>
+      <input type="number" [(ngModel)]="idAlquiler" name="idAlquiler" required />
+    </div>
+
+    <button type="submit" class="btn-enviar">Enviar Cancelación</button>
+  </form>
+
+  <p *ngIf="mensaje" class="mensaje">{{ mensaje }}</p>
+</div>

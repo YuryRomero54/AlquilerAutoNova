@@ -1,0 +1,36 @@
+<div class="login-bg">
+  <div class="overlay"></div>
+
+  <div class="login-box">
+    <img src="assets/logo.png" alt="Logo AutoNova" class="logo">
+
+    <h2>Iniciar sesión</h2>
+
+    <form (ngSubmit)="iniciarSesion()">
+      <input
+        type="email"
+        [(ngModel)]="correo"
+        name="correo"
+        placeholder="Correo"
+        required
+      />
+      <input
+        type="password"
+        [(ngModel)]="contrasena"
+        name="contrasena"
+        placeholder="Contraseña"
+        required
+      />
+      <button type="submit">Ingresar</button>
+    </form>
+
+    <div *ngIf="mensajeError" class="mensaje-error">
+      {{ mensajeError }}
+    </div>
+    
+  </div>
+</div>
+
+
+
+

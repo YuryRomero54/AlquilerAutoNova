@@ -1,0 +1,100 @@
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Contenedor principal */
+.contenedor-tabla {
+  background-image: url('../../assets/fondo7.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding: 30px;
+  backdrop-filter: brightness(0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ✅ BANNER SUPERIOR */
+.banner {
+  width: 104%;
+  max-width: 20x;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color:  #5a7081; ;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+}
+
+.banner h1 {
+  flex: 1;
+  text-align: center;
+  font-size: 24px;
+  margin: 0;
+}
+
+.btn-volver {
+  background-color: #ffffff;
+  color: #004080;
+  border: 2px solid white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-volver:hover {
+  background-color: #e0e0e0;
+}
+
+/* ✅ Tabla de datos */
+table {
+  width: 95%;
+  max-width: 1100px;
+  background-color: white;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+th {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* ✅ Mensajes de error y alertas */
+.error {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.mensaje {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #444;
+}

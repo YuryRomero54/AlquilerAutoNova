@@ -1,0 +1,36 @@
+<div class="contenedor-tabla">
+  <div class="banner">
+    <img src="assets/logo.png" alt="Logo de la empresa" class="logo" />
+    <h1 class="titulo-banner">📋 Tabla de Gestiones</h1>
+    <button class="btn-volver" (click)="volver()">⬅ Volver</button>
+  </div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <table *ngIf="gestiones.length > 0" class="tabla">
+    <thead>
+      <tr>
+        <th>ID Gestión</th>
+        <th>Fecha Gestión</th>
+        <th>Observaciones</th>
+        <th>ID Administrador</th>
+        <th>ID Alquiler</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let g of gestiones">
+        <td>{{ g.id_gestion }}</td>
+        <td>{{ g.fecha_gestion }}</td>
+        <td>{{ g.observaciones }}</td>
+        <td>{{ g.administrador?.id_administrador }}</td>
+        <td>{{ g.alquiler?.id_alquiler }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="gestiones.length === 0 && !error" class="mensaje">
+    ⚠️ No hay gestiones registradas.
+  </div>
+</div>
