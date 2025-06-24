@@ -1,0 +1,114 @@
+<div class="bg" style="background-color: #F8F8F8;">
+  <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+    <div class="parent">
+      <div class="child">
+        <div nz-row class="imgDiv">
+          <div nz-col nzSpan="24">
+            <h1 style="margin-left: 80px;">Sign Up</h1>
+          </div>
+        </div>
+        <form nz-form [formGroup]="signupForm">
+          <!-- Nombre Completo -->
+          <nz-form-item>
+            <nz-form-control nzHasFeedback>
+              <input nz-input placeholder="Nombre Completo" id="nombreCompleto" formControlName="nombreCompleto"/>
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- Apellidos -->
+          <nz-form-item>
+            <nz-form-control nzHasFeedback>
+              <input nz-input placeholder="Apellidos" id="apellidos" formControlName="apellidos" />
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- Categoría Licencia -->
+          <nz-form-item>
+            <nz-form-control nzHasFeedback>
+              <input nz-input placeholder="Categoría Licencia" id="categoriaLicencia" formControlName="categoriaLicencia" />
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- Teléfono -->
+          <nz-form-item>
+            <nz-form-control nzHasFeedback>
+              <input nz-input placeholder="Teléfono" id="telefono" formControlName="telefono"/>
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- Fecha Expedición Licencia -->
+         <nz-form-item>
+  <nz-form-label [nzSpan]="24">Fecha de Expedición de Licencia</nz-form-label>
+  <nz-form-control nzHasFeedback>
+    <input
+      nz-input
+      placeholder="dd/mm/aaaa"
+      type="date"
+      id="fechaExpedicionLicencia"
+      formControlName="fechaExpedicionLicencia"
+    />
+  </nz-form-control>
+</nz-form-item>
+
+          <!-- Vigencia -->
+            <nz-form-item>
+  <nz-form-label [nzSpan]="24">Fecha de la Vigencia</nz-form-label>
+  <nz-form-control nzHasFeedback>
+    <input
+      nz-input
+      placeholder="dd/mm/aaaa"
+      type="date"
+      id="Vigencia"
+      formControlName="vigencia"
+    />
+  </nz-form-control>
+</nz-form-item>
+
+          <!-- Correo -->
+          <nz-form-item>
+            <nz-form-control nzHasFeedback nzErrorTip="The input is not valid E-mail!">
+              <input nz-input placeholder="E-mail" type="email" id="email"  formControlName="correoUsuario"/>
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- Password -->
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzErrorTip]="errorPass">
+              <input nz-input placeholder="Password" type="password" id="password" formControlName="password" />
+              <ng-template #errorPass let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Password is required!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('pattern')">
+                  Password should contain 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- Confirm Password -->
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzErrorTip]="errorTpl">
+              <input nz-input type="password" placeholder="Confirm Password" id="checkPassword" formControlName="checkPassword" />
+              <ng-template #errorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Please confirm your password!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('confirm')">
+                  Two passwords that you enter is inconsistent!
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+
+          <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="register()"
+          [disabled]="signupForm.invalid">
+            Register
+          </button>
+          Or <a routerLink="/login"> login now! </a>
+        </form>
+      </div>
+    </div>
+  </nz-spin>
+</div>
+

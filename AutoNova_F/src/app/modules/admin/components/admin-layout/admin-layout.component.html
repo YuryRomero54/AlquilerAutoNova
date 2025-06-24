@@ -1,0 +1,56 @@
+<nz-layout style="min-height: 100vh;">
+  <!-- Sidebar -->
+  <nz-sider
+    nzCollapsible
+    [(nzCollapsed)]="isCollapsed"
+    [nzCollapsedWidth]="80"
+    [nzWidth]="200"
+    nzTheme="dark"
+    nzBreakpoint="md"
+    [nzZeroTrigger]="null"
+  >
+    <div class="logo" style="color: white; text-align: center; padding: 16px;">
+      <span *ngIf="!isCollapsed">📊 Admin DashBoard</span>
+      <span *ngIf="isCollapsed">📊</span>
+    </div>
+
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+        <a [routerLink]="'/admin/dashboard'" class="menu-link">
+          <span nz-icon nzType="dashboard" class="menu-icon"></span>
+          <span class="menu-text" *ngIf="!isCollapsed">Pendientes</span>
+        </a>
+      </li>
+
+      <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+        <a [routerLink]="'/admin/vehiculos'" class="menu-link">
+          <span nz-icon nzType="car" class="menu-icon"></span>
+          <span class="menu-text" *ngIf="!isCollapsed">Vehículos</span>
+        </a>
+      </li>
+
+      <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+        <a [routerLink]="'/admin/update'" class="menu-link">
+          <span nz-icon nzType="user" class="menu-icon"></span>
+          <span class="menu-text" *ngIf="!isCollapsed">Update Alquileres</span>
+        </a>
+      </li>
+        <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+        <a [routerLink]="'/admin/updateVehiculo'" class="menu-link">
+          <span nz-icon nzType="search" class="menu-icon"></span>
+          <span class="menu-text" *ngIf="!isCollapsed">Update Vehiculos</span>
+        </a>
+      </li>
+    </ul>
+  </nz-sider>
+
+  <!-- Contenido principal -->
+  <nz-layout>
+    <nz-content style="margin: 24px 16px;">
+      <router-outlet></router-outlet>
+    </nz-content>
+    <nz-footer style="text-align: center;">©2025 Car Rental Service</nz-footer>
+  </nz-layout>
+</nz-layout>
+
+
