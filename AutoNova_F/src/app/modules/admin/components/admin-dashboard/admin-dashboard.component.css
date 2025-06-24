@@ -1,0 +1,22 @@
+.admin-dashboard-container {
+  background: #f5f7fa;
+  min-height: 100vh;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.dashboard-card {
+  width: 100%;
+  max-width: 1200px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  color: #333;
+}

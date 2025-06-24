@@ -1,0 +1,67 @@
+
+
+  <!-- Layout principal -->
+  <nz-layout>
+  
+
+    <!-- Contenido principal -->
+    <nz-content style="margin: 24px 16px;">
+         <router-outlet></router-outlet>
+      <div class="admin-dashboard-container">
+        <nz-card nzTitle="Alquileres Pendientes" [nzBordered]="false" class="dashboard-card">
+          <nz-table 
+            [nzData]="alquileresPendientes" 
+            [nzBordered]="true"
+            [nzSize]="'middle'"
+            [nzScroll]="{ x: '1000px' }"
+            [nzShowPagination]="false"
+            [nzTableLayout]="'auto'">
+
+            <thead>
+              <tr>
+                <th>ID_Alquiler</th>
+                <th>ID_Usuario</th>
+                <th>ID_Vehículo</th>
+                <th>Placa</th>
+                <th>Tipo</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Entrega</th>
+                <th>Estado</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let alquiler of alquileresPendientes">
+                <td>#{{ alquiler.idAlquiler }}</td>
+                <td>{{ alquiler.usuario.idUsuario }}</td>
+                <td>{{ alquiler.vehiculo.idVehiculo }}</td>
+                <td>{{ alquiler.vehiculo.placa }}</td>
+                <td>{{ alquiler.vehiculo.tipo }}</td>
+                <td>{{ alquiler.fecha_inicio | date:'dd/MM/yyyy' }}</td>
+                <td>{{ alquiler.fecha_entrega | date:'dd/MM/yyyy' }}</td>
+                <td>
+                  <nz-tag 
+                    [nzColor]="alquiler.estado === 'pendiente' ? 'orange' 
+                              : alquiler.estado === 'aprobado' ? 'green' 
+                              : alquiler.estado === 'cancelado' ? 'red' : 'default'">
+                    <i nz-icon 
+                      [nzType]="alquiler.estado === 'pendiente' ? 'clock-circle' 
+                               : alquiler.estado === 'aprobado' ? 'check-circle' 
+                               : alquiler.estado === 'cancelado' ? 'close-circle' : 'question-circle'">
+                    </i>
+                    {{ alquiler.estado | titlecase }}
+                  </nz-tag>
+                </td>
+                <td>{{ alquiler.valor | currency:'COP':'symbol' }}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </nz-card>
+      </div>
+    </nz-content>
+
+
+
+
+

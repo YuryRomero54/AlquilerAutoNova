@@ -1,0 +1,70 @@
+<nz-card nzTitle="Entregar Vehículo" style="max-width: 600px; margin: auto;">
+  <form (ngSubmit)="BuscarVehiculoPorIdAlquiler()" [formGroup]="FormBuscar">
+    <nz-input-group [nzPrefix]="prefixIcon">
+      <ng-template #prefixIcon>
+        <i nz-icon nzType="search" nzTheme="outline"></i>
+      </ng-template>
+      <input
+        type="text"
+        nz-input
+        formControlName="idAlquiler"
+        placeholder="Ingrese ID de alquiler"
+        style="border-radius: 8px;"
+      />
+    </nz-input-group>
+    <div style="text-align: right; margin-top: 12px;">
+      <button nz-button nzType="primary">Buscar</button>
+    </div>
+  </form>
+
+  <!-- Mensaje de error o confirmación -->
+  <p *ngIf="mensaje"
+     [ngStyle]="{ 'color': mensaje.includes('disponible') ? 'green' : 'red' }"
+     style="margin-top: 15px; text-align: center;">
+    {{ mensaje }}
+  </p>
+
+  <!-- Detalles del vehículo -->
+  <ng-container *ngIf="vehiculo">
+    <div
+      style="margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);"
+    >
+      <img
+        [src]="'http://localhost:8085/uploads/' + vehiculo.imagen"
+        alt="Imagen del vehículo"
+        style="width: 100%; height: 220px; object-fit: cover;"
+      />
+    </div>
+
+    <nz-descriptions
+      nzTitle="Detalles del Vehículo"
+      nzBordered
+      [nzColumn]="1"
+      style="margin-top: 20px; border-radius: 10px; overflow: hidden;"
+    >
+      <nz-descriptions-item nzTitle="Placa">
+        {{ vehiculo.placa }}
+      </nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Estado">
+        <span
+          [ngStyle]="{
+            color: vehiculo.estado === 'Disponible' ? '#52c41a' : '#faad14'
+          }"
+        >
+          {{ vehiculo.estado }}
+        </span>
+      </nz-descriptions-item>
+      <nz-descriptions-item nzTitle="ID del Vehículo">
+        {{ vehiculo.idVehiculo }}
+      </nz-descriptions-item>
+    </nz-descriptions>
+
+    <div style="text-align: right; margin-top: 20px;">
+      <button nz-button nzType="primary" (click)="CambiarEstadoADisponible()">
+        Marcar como Disponible
+      </button>
+    </div>
+  </ng-container>
+</nz-card>
+
+

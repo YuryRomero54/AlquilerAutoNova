@@ -1,0 +1,67 @@
+<nz-select 
+  [(ngModel)]="tipoSeleccionado"
+  (ngModelChange)="filtrarVehiculosPorTipo()"
+  nzPlaceHolder="Seleccione tipo de vehículo"
+  style="width: 300px; margin: 24px auto; display: block;">
+  <nz-option 
+    *ngFor="let tipo of tiposDeVehiculos" 
+    [nzValue]="tipo" 
+    [nzLabel]="tipo | titlecase">
+  </nz-option>
+</nz-select>
+
+<!-- Lista de Vehículos -->
+<div *ngIf="vehiculosFiltrados.length > 0; else noData" 
+     style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; padding: 0 24px;">
+
+  <nz-card 
+    *ngFor="let vehiculo of vehiculosFiltrados" 
+    [nzTitle]="vehiculo.tipo | titlecase"
+    [nzHoverable]="true"
+    style="width: 100%; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 16px rgba(0,0,0,0.08);">
+    
+    <!-- Imagen del vehículo -->
+    <img 
+      [src]="'http://localhost:8085/uploads/' + vehiculo.imagen" 
+      alt="Imagen del vehículo"
+      style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px 12px 0 0; margin-bottom: 16px;">
+
+    <!-- Información del vehículo -->
+    <ul style="padding-left: 16px; list-style: none; margin: 0;">
+    <li>
+  <strong>Estado:</strong>
+  <span 
+    [ngStyle]="{
+      'background-color': vehiculo.estado.trim().toLowerCase() === 'disponible' ? '#f6ffed' : '#fff1f0',
+      'color': vehiculo.estado.trim().toLowerCase() === 'disponible' ? '#52c41a' : '#f5222d',
+      'border': vehiculo.estado.trim().toLowerCase() === 'disponible' ? '1px solid #b7eb8f' : '1px solid #ffa39e',
+      'padding': '4px 12px',
+      'border-radius': '20px',
+      'display': 'inline-flex',
+      'align-items': 'center',
+      'gap': '6px',
+      'font-weight': '500',
+      'margin-left': '8px'
+    }">
+    <i nz-icon [nzType]="vehiculo.estado.trim().toLowerCase() === 'disponible' ? 'check-circle' : 'close-circle'"></i>
+    {{ vehiculo.estado }}
+  </span>
+</li>
+
+      <li><strong>ID:</strong> {{ vehiculo.idVehiculo }}</li>
+      <li><strong>Placa:</strong> {{ vehiculo.placa }}</li>
+      <li><strong>Valor Diario:</strong> ${{ vehiculo.valorDiario }}</li>
+    </ul>
+  </nz-card>
+</div>
+
+<!-- Mensaje si no hay vehículos -->
+<ng-template #noData>
+  <div class="empty-state" style="text-align: center; padding: 40px 16px;">
+    <div class="empty-icon" style="font-size: 48px;">🚗</div>
+    <div class="empty-text" style="font-size: 18px; color: #999;">No hay vehículos disponibles para el tipo seleccionado.</div>
+  </div>
+</ng-template>
+
+
+

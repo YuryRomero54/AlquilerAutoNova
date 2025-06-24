@@ -1,0 +1,63 @@
+<nz-card nzTitle="Entregar Alquiler" style="max-width: 600px; margin: auto;">
+  <form (ngSubmit)="buscarVehiculoPorPlaca()" [formGroup]="formBusqueda">
+    <nz-input-group [nzPrefix]="prefixIcon">
+      <ng-template #prefixIcon>
+        <i nz-icon nzType="search" nzTheme="outline"></i>
+      </ng-template>
+      <input
+        type="text"
+        nz-input
+        formControlName="placa"
+        placeholder="Ingrese número de placa"
+        style="border-radius: 8px;"
+      />
+    </nz-input-group>
+    <div style="text-align: right; margin-top: 12px;">
+      <button nz-button nzType="primary">Buscar</button>
+    </div>
+  </form>
+
+  <ng-container *ngIf="alquilerEncontrado?.vehiculo">
+    <div
+      style="margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);"
+    >
+      <img
+        [src]="'http://localhost:8085/uploads/' + alquilerEncontrado?.vehiculo?.imagen"
+        alt="Imagen del vehículo"
+        style="width: 100%; height: 220px; object-fit: cover;"
+      />
+    </div>
+
+    <nz-descriptions
+      nzTitle="Detalles del Vehículo"
+      nzBordered
+      [nzColumn]="1"
+      style="margin-top: 20px; border-radius: 10px; overflow: hidden;"
+    >
+      <nz-descriptions-item nzTitle="Placa">
+        {{ alquilerEncontrado?.vehiculo?.placa }}
+      </nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Estado">
+        <span
+          [ngStyle]="{
+            color: alquilerEncontrado?.vehiculo?.estado === 'Disponible' ? '#52c41a' : '#faad14'
+          }"
+        >
+          {{ alquilerEncontrado?.vehiculo?.estado }}
+        </span>
+      </nz-descriptions-item>
+      <nz-descriptions-item nzTitle="ID del Vehículo">
+        {{ alquilerEncontrado?.vehiculo?.idVehiculo }}
+      </nz-descriptions-item>
+    </nz-descriptions>
+
+    <div style="text-align: right; margin-top: 20px;">
+      <button nz-button nzType="primary" (click)="entregarVehiculo()">
+        Marcar como Entregado
+      </button>
+    </div>
+  </ng-container>
+</nz-card>
+
+
+
